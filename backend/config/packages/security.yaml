@@ -4,14 +4,44 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
-            lazy: true
-            provider: users_in_memory
+        logout:
+            pattern: ^/api/v1/logout
+            logout:
+                path: api_token_invalidate
+                invalidate_session: true
+                delete_cookies:
+                    refresh_token:
+                        samesite: none
+                        secure: true
+                    #                        partitioned: true
+                    BEARER:
+                        samesite: none
+                        secure: true
+                    #                        partitioned: true
+                    mercureAuthorization:
+                        samesite: none
+                        secure: false
+                        path: /.well-known/mercure
+        #                        partitioned: true
+        api:
+            pattern: ^/api
+            stateless: true
+            entry_point: jwt
+            json_login:
+                check_path: /api/v1/login_check
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+            jwt: ~
+            refresh_jwt:
+                check_path: /api/v1/token_refresh
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
