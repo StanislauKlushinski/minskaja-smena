@@ -22,6 +22,7 @@ class TokenController extends AbstractController
 
         return new JsonResponse([
             'user' => $user->getId(),
+            'name' => $user->getEmail(),
             'message' => 'token valid',
             'success' => true,
         ]);

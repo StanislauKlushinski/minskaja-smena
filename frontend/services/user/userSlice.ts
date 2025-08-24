@@ -89,10 +89,10 @@ export const authUserRequest = createAsyncThunk(
     return fulfillWithValue(res.ok)
   }
 )
+
 export const logoutUserRequest = createAsyncThunk(
   `user/logoutUserRequest `,
-  async (_, { fulfillWithValue, dispatch }) => {
-    dispatch(startAuthCheck())
+  async (_, { fulfillWithValue }) => {
     const data = await fetch(`${url}/logout`, {
       method: 'POST',
       mode: 'cors',

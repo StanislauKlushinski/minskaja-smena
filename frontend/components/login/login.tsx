@@ -9,10 +9,10 @@ export default function Login () {
       <div className={styles.index}>
         <div className={styles.container}>
           <h1>
-            Название
+            Минская смена
           </h1>
           <h2>
-            Описание
+            ТИМ-ФИКСАЦИЯ
           </h2>
 
           <Form/>

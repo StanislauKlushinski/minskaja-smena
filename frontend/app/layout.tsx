@@ -18,6 +18,7 @@ export default function RootLayout ({
     <body>
     <StoreProvider>
       {children}
+      <div id='next-modals'></div>
     </StoreProvider>
     </body>
     </html>

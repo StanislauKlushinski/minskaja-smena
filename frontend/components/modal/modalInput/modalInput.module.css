@@ -1,0 +1,27 @@
+.modalInput {
+  margin: 30px auto 0;
+  color: var(--text-color);
+  height: 1.5em;
+  width: 80%;
+}
+
+.modalTextArea {
+  resize: vertical;
+  width: 80%;
+  min-width: 80%;
+  max-width: 80%;
+  min-height: 4em;
+  color: var(--text-color);
+  margin: 30px auto 0;
+}
+
+.modalLabel {
+  display: none;
+}
+
+.modalInputContainer {
+  display: grid;
+  align-items: end;
+  justify-content: space-between;
+  grid-template-columns: 4fr 6fr;
+}

@@ -49,6 +49,7 @@ class AddRoleCommand extends Command
         $username = $input->getArgument('username');
         $role = $input->getArgument('role');
 
+        /** @var User $user */
         $user = $this->em->getRepository(User::class)
             ->findOneBy(['email' => $username]);
         if (!$user) {

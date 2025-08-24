@@ -55,7 +55,7 @@ export default function Auth ({
         alignItems: 'center',
         justifyContent: 'center',
         display: 'flex'
-      }}>{showLoading ? 'loading...' : ''}</h2>
+      }}>{showLoading ? 'Пожалуйста подождите...' : ''}</h2>
     )
   }
 

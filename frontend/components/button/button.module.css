@@ -1,0 +1,26 @@
+.button {
+  font-weight: 700;
+  color: var(--text-color);
+  background-color: var(--accent-color);
+  padding: 6px 12px;
+  border: solid 1px var(--accent-color);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, opacity 0.3s, border 0.3s;
+}
+
+.button:hover:not(:disabled) {
+  background-color: var(--interactive-color);
+  border: solid 1px var(--interactive-color);
+}
+
+.button:active:not(:disabled) {
+  color: var(--accent-color);
+  background-color: #00000000;
+  border: solid 1px var(--accent-color);
+}
+
+.button:disabled {
+  opacity: 0.3;
+  cursor: auto;
+}
