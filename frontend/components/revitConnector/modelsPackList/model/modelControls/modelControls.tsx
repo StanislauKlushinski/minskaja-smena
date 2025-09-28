@@ -5,7 +5,6 @@ import ModalTitle from '@/components/modal/modalTitle/modalTitle'
 import ModalButtons from '@/components/modal/modalButtons/modalButtons'
 import ModalButton from '@/components/modal/modalButton/modalButton'
 import Button from '@/components/button/button'
-import { IDBElement } from '@/utils/interface'
 import { useAppDispatch } from '@/services/hooks'
 
 interface IModelControls {
@@ -35,12 +34,12 @@ export default function ModelControls ({
         />
         <ModalButtons>
           <ModalButton name={'Продолжить'} onClick={async () => {
-            if (browserEvent) {
-              const model: IDBElement[] = JSON.parse(
-                await browserEvent.getModel())
-
-              console.log(model)
-            }
+            // if (browserEvent) {
+            //   const model: IDBElement[] = JSON.parse(
+            //     await browserEvent.getModel())
+            //
+            //   console.log(model)
+            // }
           }}/>
           <ModalButton name={'Отмена'} onClick={() => {setModalOpened(false)}}/>
         </ModalButtons>
