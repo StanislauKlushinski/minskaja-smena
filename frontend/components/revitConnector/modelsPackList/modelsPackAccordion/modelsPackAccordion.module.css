@@ -1,0 +1,44 @@
+.accordion {
+  width: 100%;
+  color: var(--secondary-color);
+}
+
+.accordionInput {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.accordionLabel {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background: var(--primary-color);
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.accordionLabel:hover {
+  opacity: 0.9;
+}
+
+.accordionLabel::after {
+  content: "\276F";
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.accordionContent {
+  color: var(--text-color);
+  background: white;
+  transition: max-height 0.3s, padding 0.3s;
+  height: 100%;
+  overflow: hidden;
+  max-height: 0;
+}
+.accordionInput:checked + .accordionLabel::after {
+  transform: rotate(90deg);
+}

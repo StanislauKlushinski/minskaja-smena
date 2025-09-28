@@ -5,18 +5,27 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start",
+    "start": "next build && next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "@types/lodash": "^4.17.20",
+    "lodash": "^4.17.21",
+    "next": "15.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.4.6"
+    "react-redux": "^9.2.0",
+    "three": "^0.179.1",
+    "three-mesh-bvh": "^0.9.1",
+    "tree-model": "^1.0.7",
+    "troika-three-text": "^0.52.4"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^19",
-    "@types/react-dom": "^19"
+    "@types/react-dom": "^19",
+    "@types/three": "^0.179.0",
+    "typescript": "^5"
   }
 }

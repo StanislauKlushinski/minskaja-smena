@@ -1,0 +1,35 @@
+.modal {
+  display: flex;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 100000;
+  opacity: 0;
+  align-items: center;
+  justify-content: center;
+  background: hsla(0, 0%, 0%, 0.7);
+  transition: opacity 0.3s;
+  pointer-events: none;
+  padding: 20px;
+}
+
+.modalOpened {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: 1px solid rgba(204, 204, 204, 0.3);
+  border-radius: 4px;
+  padding: 10px;
+  min-width: 200px;
+  width: 80%;
+  text-align: center;
+}

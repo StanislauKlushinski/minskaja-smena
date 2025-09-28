@@ -3,3 +3,12 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+api_login_check:
+    path: /api/v1/login_check
+
+api_refresh_token:
+    path: /api/v1/token_refresh
+
+api_token_invalidate:
+    path: /api/v1/logout
