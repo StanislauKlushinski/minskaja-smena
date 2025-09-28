@@ -23,9 +23,6 @@ readonly class ModelService
         if (!isset($data['name'])) {
             throw new BadRequestHttpException('missing field: name');
         }
-        if (!isset($data['elements'])) {
-            throw new BadRequestHttpException('missing field: data');
-        }
         if (!isset($data['modelsPackId'])) {
             throw new BadRequestHttpException('missing field: modelsPackId');
         }
@@ -35,6 +32,19 @@ readonly class ModelService
         }
         if (!is_numeric($data['modelsPackId'])) {
             throw new BadRequestHttpException('field must be int: modelsPackId');
+        }
+    }
+
+    public function checkAddElementsPostData(array $data): void
+    {
+        if (!isset($data['elements'])) {
+            throw new BadRequestHttpException('missing field: element');
+        }
+        if (!isset($data['id'])) {
+            throw new BadRequestHttpException('missing field: id');
+        }
+        if (!is_numeric($data['id'])) {
+            throw new BadRequestHttpException('field must be int: id');
         }
     }
 
@@ -53,10 +63,32 @@ readonly class ModelService
             ->setModelsPack($modelsPack)
             ->setDescription($data['description']);
 
-        foreach ($data['elements'] as $element) {
+        $this->em->persist($model);
+        $this->em->persist($modelsPack);
+        $this->em->flush();
+
+        return $model;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Model
+     */
+    function addElements(array $data): Model
+    {
+        $model = $this->modelRepository->find($data['id']);
+
+        if (!$model) {
+            throw new BadRequestHttpException('model not found');
+        }
+
+        $elements = $data['elements'];
+        foreach ($elements as $element) {
             if ($element['type'] === 'UNKNOWN') {
                 continue;
             }
+
             $modelElement = new ModelElement();
             $modelElement
                 ->setModel($model)
@@ -64,8 +96,6 @@ readonly class ModelService
                 ->setType($element['type']);
             $this->em->persist($modelElement);
         }
-        $this->em->persist($model);
-        $this->em->persist($modelsPack);
         $this->em->flush();
 
         return $model;
@@ -115,14 +145,19 @@ readonly class ModelService
 
     public function checkGetModelPostData(array $data): void
     {
-        if (!isset($data['id'])) {
-            throw new BadRequestHttpException('missing field: id');
+        if (!isset($data['slug'])) {
+            throw new BadRequestHttpException('missing field: slug');
+        }
+        if (!is_string($data['slug'])) {
+            throw new BadRequestHttpException('slug must be str');
         }
     }
 
-    public function getModelJsonFull(int $id): array
+    public function getModelJsonFull(string $slug): array
     {
-        $model = $this->modelRepository->find($id);
+        $model = $this->modelRepository->findOneBy([
+            'slug' => $slug,
+        ]);
         if (!$model) {
             throw new BadRequestHttpException('model not found');
         }

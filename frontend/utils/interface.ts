@@ -56,6 +56,10 @@ export interface IModelPostData {
   modelsPackId: number
   name: string
   description: string
+}
+
+export interface IElementsPostData {
+  id: number
   elements: IDBElement[]
 }
 
@@ -68,9 +72,16 @@ export type IDBElement =
   | IDBPoint
   | IDBPointCloud
   | IDBVector
+  | IDBMesh
 
 export interface IDBUnknown {
   type: 'UNKNOWN'
+}
+
+export interface IDBMesh {
+  type: 'Mesh'
+  //[Vertices, Faces, Color, Opacity]
+  data: [Array<number>, Array<number>, [number, number, number], number]
 }
 
 export interface IDBArc {
@@ -87,8 +98,8 @@ export interface IDBCircle {
 
 export interface IDBEllipse {
   type: 'Ellipse'
-  //[Center, SemiAxisXEnd, SemiAxisYEnd]
-  data: [IDBPoint, IDBPoint, IDBPoint]
+  //[Center, SemiAxisXEnd, SemiAxisYEnd, IsClosed]
+  data: [IDBPoint, IDBPoint, IDBPoint, boolean]
 }
 
 export interface IDBLine {

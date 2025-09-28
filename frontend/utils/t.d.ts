@@ -1,3 +1,4 @@
 declare const browserEvent: {
-  getModel: () => Promise<string>
+  getModel: (id: number) => Promise<string>
+  getIds: () => Promise<string>
 } | undefined

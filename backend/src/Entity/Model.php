@@ -58,6 +58,13 @@ class Model
     private DateTimeInterface $updatedAt;
 
     /**
+     * @var string
+     */
+    #[ORM\Column(type: 'string', unique: true)]
+    #[Gedmo\Slug(fields: ['name'], separator: '-', prefix: 'model-')]
+    private string $slug;
+
+    /**
      * @var string|null
      */
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -205,6 +212,14 @@ class Model
         $this->description = $description;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->slug;
     }
 
 }

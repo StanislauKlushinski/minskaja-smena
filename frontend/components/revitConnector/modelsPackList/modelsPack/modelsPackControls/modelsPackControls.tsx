@@ -5,11 +5,10 @@ import ModalTitle from '@/components/modal/modalTitle/modalTitle'
 import ModalInput from '@/components/modal/modalInput/modalInput'
 import ModalButtons from '@/components/modal/modalButtons/modalButtons'
 import ModalButton from '@/components/modal/modalButton/modalButton'
-import { addModelRequest } from '@/services/modelsPack/modelsPackSlice'
 import { useAppDispatch } from '@/services/hooks'
 import Button from '@/components/button/button'
 import ModalText from '@/components/modal/modalText/modalText'
-import { IDBElement } from '@/utils/interface'
+import { addModelRequest } from '@/services/modelsPack/modelsPackSlice'
 
 interface IModelsPackControls {
   modelsPackId: number
@@ -54,17 +53,12 @@ export default function ModelsPackControls ({
           <ModalButton
             name={'Загрузить'}
             onClick={async () => {
-              if (browserEvent) {
-                const model: IDBElement[] = JSON.parse(
-                  await browserEvent.getModel())
-                dispatch(addModelRequest({
-                  name: modalName,
-                  description: modalDescription,
-                  elements: model,
-                  modelsPackId: modelsPackId
-                }))
-              }
               reset()
+              dispatch(addModelRequest({
+                name: modalName,
+                description: modalDescription,
+                modelsPackId: modelsPackId
+              }))
             }}
             disable={modalName === ''}
           />

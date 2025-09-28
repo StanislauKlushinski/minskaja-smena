@@ -1,12 +1,16 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { url } from '@/utils/chek-response'
 import {
+  IDBElement,
+  IDBPointCloud,
+  IElementsPostData,
   IModelFull,
   IModelPostData,
   IModelShort,
   IModelsPackPostData,
   IModelsPackShort
 } from '@/utils/interface'
+import { getModel } from '@/utils/elementsZip'
 
 interface IInitialState {
   modelsPacksShort: IModelsPackShort[]
@@ -46,12 +50,27 @@ export const addModelsPackRequest = createAsyncThunk(
   }
 )
 
+async function postElements (data: IElementsPostData) {
+  return await fetch(`${url}/add-elements`, {
+    method: 'POST',
+    mode: 'cors',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+}
+
 export const addModelRequest = createAsyncThunk(
   `modelsPack/addModelRequest`,
   async (
     data: IModelPostData,
     { fulfillWithValue, rejectWithValue }
   ) => {
+    if (!browserEvent) {
+      return rejectWithValue(false)
+    }
     const res = await fetch(`${url}/add-model`, {
       method: 'POST',
       mode: 'cors',
@@ -59,14 +78,92 @@ export const addModelRequest = createAsyncThunk(
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify({
+        modelsPackId: data.modelsPackId,
+        name: data.name,
+        description: data.description
+      })
     })
+
+    const responseJson: IModelShort = await res.json()
 
     if (!res.ok) {
       return rejectWithValue(false)
     }
+    const modelIds: number[] = JSON.parse(
+      await browserEvent.getIds())
 
-    const responseJson: IModelShort = await res.json()
+    const encoder = new TextEncoder()
+    const maxSizeBytes = 10_000_000
+    let elementsToPost: IDBElement[] = []
+    let pointClouds: IDBPointCloud[] = []
+
+    for await (const elements of getModel(modelIds)) {
+      const json = JSON.stringify(elementsToPost)
+      const size = encoder.encode(json).length
+      if (size < maxSizeBytes) {
+        elementsToPost.push(...elements)
+      } else {
+        pointClouds.push(...elementsToPost.filter(
+          (e) => e.type === 'PointCloud'))
+        const otherElements: Exclude<IDBElement, IDBPointCloud>[] = elementsToPost.filter(
+          (e) => e.type !== 'PointCloud')
+
+        const body: IElementsPostData = {
+          id: responseJson.id,
+          elements: otherElements
+        }
+        const res = await postElements(body)
+        if (!res.ok) {
+          return rejectWithValue(false)
+        }
+
+        elementsToPost = []
+      }
+    }
+
+    if (elementsToPost.length !== 0) {
+      const body: IElementsPostData = {
+        id: responseJson.id,
+        elements: elementsToPost
+      }
+      const res = await postElements(body)
+      if (!res.ok) {
+        return rejectWithValue(false)
+      }
+    }
+
+    for (const pointCloud of pointClouds) {
+      if (pointCloud.data.length > 50000) {
+        const chunkSize = 50000
+        for (let i = 0; i < pointCloud.data.length; i += chunkSize) {
+          const chunk = pointCloud.data.slice(i, i + chunkSize)
+
+          const pointCloudPostData: IDBPointCloud = {
+            type: 'PointCloud',
+            data: chunk
+          }
+
+          const body: IElementsPostData = {
+            id: responseJson.id,
+            elements: [pointCloudPostData]
+          }
+          const res = await postElements(body)
+          if (!res.ok) {
+            return rejectWithValue(false)
+          }
+        }
+      } else {
+        const body: IElementsPostData = {
+          id: responseJson.id,
+          elements: [pointCloud]
+        }
+        const res = await postElements(body)
+        if (!res.ok) {
+          return rejectWithValue(false)
+        }
+      }
+    }
 
     return fulfillWithValue(responseJson)
   }
@@ -75,7 +172,7 @@ export const addModelRequest = createAsyncThunk(
 export const getModelRequest = createAsyncThunk(
   `modelsPack/getModelRequest`,
   async (
-    data: { id: number },
+    data: { slug: string },
     { fulfillWithValue, rejectWithValue }
   ) => {
     const res = await fetch(`${url}/get-model`, {
@@ -87,7 +184,6 @@ export const getModelRequest = createAsyncThunk(
       },
       body: JSON.stringify(data)
     })
-    console.log(res)
     if (!res.ok) {
       return rejectWithValue(false)
     }
