@@ -16,6 +16,7 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-redux": "^9.2.0",
+    "swiper": "^12.0.2",
     "three": "^0.179.1",
     "three-mesh-bvh": "^0.9.1",
     "tree-model": "^1.0.7",

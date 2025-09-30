@@ -1,0 +1,132 @@
+.divider {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* линия - текст - линия */
+  align-items: center;
+  gap: 12px; /* расстояние между текстом и линиями */
+  padding: 17px 13px 0;
+}
+
+.line {
+  display: block;
+  height: 1px;
+  background: #fff; /* цвет линии */
+}
+
+.text {
+  color: #fff; /* цвет текста */
+  font-family: Angst, serif;
+  font-weight: 100;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0.16em;
+
+}
+
+.catalogOfStructures {
+  width: calc(100% - 10px);
+  margin: 0 5px 12px;
+  border-radius: 16px;
+  background-color: #39332e;
+}
+
+.structures {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding: 0 40px 29px;
+  margin-top: 23px;
+  width: 100%;
+}
+
+.structure {
+  display: flex;
+  flex-direction: column;
+  background-color: #d9d9d9;
+  border-radius: 15px;
+  padding: 18px 18px 13px;
+  width: 100%;
+}
+
+.structure img {
+  border-radius: 5px;
+}
+
+.structure h2 {
+  text-transform: uppercase;
+  font-family: Angst, serif;
+  font-weight: 400;
+  font-style: Normal;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: center;
+  color: #000;
+  margin: 6px auto 0;
+}
+
+.structure ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  gap: 13px;
+}
+
+.structure li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: Inter, serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #000;
+}
+
+.structure button {
+  width: 100%;
+  background-color: #39332e;
+  border-radius: 3px;
+  padding: 4px 0;
+  font-family: Inter, serif;
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #fff;
+  border: none;
+  transition: opacity 0.3s;
+  margin-top: 11px;
+}
+
+.structure button:hover {
+  opacity: 0.7;
+}
+
+.structure a {
+  background-color: #a6a6a6;
+  padding: 4.5px 12.5px;
+  font-family: Inter, serif;
+  font-weight: 400;
+  font-size: 7px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #000;
+  margin-left: auto;
+  text-decoration: none;
+  border-radius: 8.5px;
+}
+
+.subtext {
+  margin-top: 13px;
+  text-align: center;
+  width: 100%;
+  color: #a4a4a4;
+  font-family: Inter, serif;
+  font-weight: 400;
+  font-size: 7px;
+  line-height: 100%;
+  letter-spacing: 0;
+}

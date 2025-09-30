@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import { TreeViewer } from '@/utils/three/treeViewer'
 import { useAppSelector } from '@/services/hooks'
@@ -14,8 +15,10 @@ export default function Viewer () {
   const modelFull = useAppSelector(modelFullSelector)
   const viewerRef = useRef<TreeViewer>(null)
 
-  const [isInitialised, setIsInitialised] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  const [isRendering, setIsRendering] = useState(true)
 
+  const [isInitialised, setIsInitialised] = useState(false)
   useEffect(() => {
     if (containerRef.current) {
       init(containerRef.current).then(viewer => {
@@ -27,17 +30,40 @@ export default function Viewer () {
 
   useEffect(() => {
     if (viewerRef.current && isInitialised && modelFull) {
-      viewerRef.current.loadModel(modelFull).then(r => r)
+      setIsLoading(false)
+      setTimeout(() => {
+        viewerRef.current?.loadModel(modelFull).then(_ => {
+          setIsRendering(false)
+        })
+      }, 10)
     }
   }, [isInitialised, modelFull])
 
   return (
-    <div
-      ref={containerRef}
-      style={{
-        width: '100%',
-        height: '100%'
-      }}
-    />
+    <>
+      <div
+        ref={containerRef}
+        style={{
+          width: '100%',
+          height: '100%'
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          display: isLoading || isRendering ? 'flex' : 'none',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+          <span>
+            {isLoading ? 'Закгрузка данных' : 'Обработка модели'}
+          </span>
+      </div>
+    </>
   )
 }

@@ -1,0 +1,16 @@
+.container {
+  position: relative;
+  background: #566060;
+  z-index: 20;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: url("/contacts/bg.png") 100px repeat;
+  opacity: 0.05;
+  pointer-events: none;
+  background-size: 550px;
+}

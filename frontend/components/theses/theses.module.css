@@ -1,0 +1,58 @@
+.container {
+  position: relative;
+}
+
+.theses {
+  display: flex;
+  padding: 86px 20px 0;
+  gap: 20px;
+}
+
+.these {
+  width: 1fr;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.these img {
+  filter: drop-shadow(0px 0px 13.44px rgba(255, 255, 255, 1)) drop-shadow(0px 0px 47.04px rgba(255, 255, 255, 1)) drop-shadow(0px 0px 94.08px rgba(255, 255, 255, 1)) drop-shadow(0px 0px 161.28px rgba(255, 255, 255, 1)) drop-shadow(0px 0px 250px rgba(255, 255, 255, 1));
+}
+
+.these h2 {
+  margin-top: 16px;
+  text-align: center;
+  font-family: Angst, serif;
+  font-weight: 50;
+  font-style: Normal;
+  font-size: 10px;
+  line-height: 100%;
+  color: #fff;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.these p {
+  font-family: 'Brygada 1918';
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: center;
+  color: #fff;
+  margin-top: 26px;
+}
+
+.title {
+  font-family: 'Angst', sans-serif; /* убедись, что шрифт подключён */
+  font-weight: 100; /* в CSS минимальное значение — 100, 50 не бывает */
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1; /* 100% = 1 */
+  letter-spacing: 0; /* 0% заменяем на 0 */
+  text-align: center;
+  color: rgba(255, 255, 255, 0.36);
+  text-transform: uppercase;
+  margin-top: 45px;
+}

@@ -1,0 +1,24 @@
+.description {
+  margin: 31px 18px 0;
+}
+
+.title {
+  font-family: Angst, serif;
+  font-weight: 50;
+  font-style: Normal;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.text {
+  margin-top: 30px;
+  font-family: 'Brygada 1918', serif;
+  font-weight: 200;
+  font-size: 9px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #fff;
+}

@@ -1,0 +1,38 @@
+.map {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 8px;
+}
+
+.map h2 {
+  display: block;
+  font-family: 'Brygada 1918', serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #fff;
+  margin-top: 28px;
+  text-align: center;
+}
+
+.mapLegend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 30px;
+  column-gap: 15px;
+  margin-top: 11px;
+}
+
+
+.mapLegend div {
+  display: flex;
+  gap: 9px;
+  font-family: 'Brygada 1918', serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #fff;
+}

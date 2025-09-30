@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  gap: 47px;
+  margin-top: 50px;
+  padding: 0 18px;
+  align-items: center;
+}
+
+.container div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 17px;
+}
+
+.container input {
+  background-color: #474b5a;
+  border-radius: 13px;
+  border: solid 1px #fcfcfc;
+  color: #fcfcfc;
+  padding: 6px 9px;
+  font-family: 'Brygada 1918', serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 100%;
+  letter-spacing: 0;
+}
+
+.container input::placeholder {
+  color: #fcfcfc;
+}
+
+.container button {
+  background-color: #fcfcfc;
+  border-radius: 13px;
+  border: none;
+  color: #474b5a;
+  padding: 6px 7px;
+  font-family: 'Brygada 1918', serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 100%;
+  letter-spacing: 0;
+}
+
+.container img {
+  opacity: 0.1;
+}

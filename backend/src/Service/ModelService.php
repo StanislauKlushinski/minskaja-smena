@@ -153,6 +153,16 @@ readonly class ModelService
         }
     }
 
+    public function checkDelModelPostData(array $data): void
+    {
+        if (!isset($data['id'])) {
+            throw new BadRequestHttpException('missing field: id');
+        }
+        if (!is_int($data['id'])) {
+            throw new BadRequestHttpException('id must be int');
+        }
+    }
+
     public function getModelJsonFull(string $slug): array
     {
         $model = $this->modelRepository->findOneBy([
@@ -163,6 +173,28 @@ readonly class ModelService
         }
 
         return $this->toJsonFull($model);
+    }
+
+    public function getModelById(int $id): Model
+    {
+        $model = $this->modelRepository->find($id);
+
+        if (!$model) {
+            throw new BadRequestHttpException('model not found');
+        }
+
+        return $model;
+    }
+
+    public function delModel(Model $model): void
+    {
+        foreach ($model->getModelElements() as $element) {
+            $model->removeModelElement($element);
+            $this->em->remove($element);
+        }
+
+        $this->em->remove($model);
+        $this->em->flush();
     }
 
 }

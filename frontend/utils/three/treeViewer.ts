@@ -122,9 +122,9 @@ export class TreeViewer {
             new LineBasicMaterial({ color: 0x000000 })
           )
 
-          this.renderer.scene.add(edgeLines)
+          // this.renderer.scene.add(edgeLines)
 
-          this.elements.push(edgeLines)
+          // this.elements.push(edgeLines)
           this.renderer.updateDirectLights()
         }
 

@@ -1,0 +1,32 @@
+.text {
+  font-family: Inter, serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #fff;
+  margin-top: 116px;
+  margin-left: 11px;
+}
+
+.textarea::placeholder {
+  color: rgba(7, 22, 7, 1);
+  text-align: right;
+  transform: translateY(50px);
+}
+
+.textarea {
+  font-family: Inter, serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: rgba(7, 22, 7, 1);
+  width: calc(100% - 22px);
+  height: 80px;
+  margin: 11px 11px 0;
+  border: solid rgba(255, 255, 255, 1) 1px;
+  border-radius: 13px;
+  background-color: rgba(56, 58, 48, 1);
+  padding: 11px 9px;
+}

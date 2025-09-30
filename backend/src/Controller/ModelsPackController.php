@@ -39,4 +39,24 @@ class ModelsPackController extends AbstractController
         return new JsonResponse($modelsPackService->getAllModelsPacksJsonShort());
     }
 
+    #[Route('/api/v1/del-models-pack', name: 'app_del_models_pack', methods: [
+        'POST',
+    ])]
+    #[IsGranted("ROLE_ROOT")]
+    public function delModelsPack(
+        Request $request,
+        ModelsPackService $modelsPackService
+    ): JsonResponse {
+        $data = json_decode($request->getContent(), true);
+
+        $modelsPackService->checkDelModelPostData($data);
+
+        $modelsPack = $modelsPackService->getModelsPackById($data["id"]);
+        $modelsPackService->delModelsPack($modelsPack);
+
+        return new JsonResponse([
+            'success' => true,
+        ]);
+    }
+
 }

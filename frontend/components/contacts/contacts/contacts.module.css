@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #d9d9d9;
+  border-radius: 6px;
+  margin: 20px 12px 0;
+  padding: 71px 0;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  padding: 0 34px;
+  width: 100%;
+  margin-top: 21px;
+}
+
+.title {
+  text-transform: uppercase;
+  color: #000;
+  font-family: Angst, serif;
+  font-weight: 50;
+  font-style: Normal;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: 0;
+}
+
+.text {
+  margin-top: 21px;
+  background-color: #bab8b8;
+  border-radius: 6px;
+  padding: 15px 29px;
+  color: #000;
+  font-family: 'Brygada 1918', serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.subtext {
+  margin-top: 7px;
+  color: #000;
+  font-family: 'Brygada 1918', serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: center;
+}
