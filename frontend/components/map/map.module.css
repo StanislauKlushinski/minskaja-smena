@@ -1,0 +1,24 @@
+.container {
+  margin: 36px 18px 0;
+  padding: 22px;
+  background-color: rgba(217, 217, 217, 1);
+  box-shadow: 20px 20px 4px 0px rgba(0, 0, 0, 0.07);
+  border-radius: 32px;
+}
+
+.container img {
+  border-radius: 6px;
+  border: solid #000 1px;
+}
+
+.container p {
+  font-family: Angst, serif;
+  font-weight: 50;
+  font-style: Normal;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: rgba(60, 53, 48, 1);
+  text-transform: uppercase;
+  margin-top: 15px;
+}

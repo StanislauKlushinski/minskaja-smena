@@ -1,0 +1,27 @@
+.swiper-pagination-bullet {
+  width: 4px;
+  height: 4px;
+  background-color: #d9d9d9;
+  display: inline-block;
+  border-radius: 50%;
+  margin: 0 2px !important;
+  transition: all 0.3s;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  width: 32px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.swiper-pagination {
+  position: static !important; /* важный стиль */
+  text-align: center;
+}
+
+.swiper-slide img {
+  border-radius: 20px;
+  overflow: hidden; /* важно, чтобы содержимое (изображение) тоже было обрезано */
+  box-shadow: 15px 15px 5px 0 #00000040;
+}

@@ -1,0 +1,78 @@
+.footer {
+  margin-top: 40px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 10px;
+}
+
+.link {
+  display: block;
+  background-color: #d9d9d9;
+  width: 100%;
+  height: 25px;
+  border-radius: 12.5px;
+  text-align: center;
+}
+
+.link a {
+  display: flex;
+  justify-content: center; /* по горизонтали */
+  align-items: center;
+  font-family: Inter, serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%
+}
+
+.footerContacts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* по горизонтали */
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.footerContacts span {
+  font-family: Inter, serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #fff;
+}
+
+.footerText {
+  width: 120px;
+  font-family: Aboreto, serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #006299;
+  margin-left: 6px;
+}
+
+.text {
+  font-family: Inter, serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #ffffff5e;
+  width: 100%;
+  text-align: center;
+  margin-top: 16px;
+  padding-bottom: 12px;
+}

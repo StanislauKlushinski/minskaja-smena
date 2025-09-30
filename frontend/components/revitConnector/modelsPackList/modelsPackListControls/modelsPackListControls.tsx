@@ -12,12 +12,12 @@ import ModalInput from '@/components/modal/modalInput/modalInput'
 interface IModelsPackListControls {}
 
 export default function ModelsPackListControls ({}: IModelsPackListControls) {
-  const [modalOpened, setModalOpened] = useState(false)
+  const [AddModalOpened, setAddModalOpened] = useState(false)
   const [modalsPackName, setModalsPackName] = useState('')
   const dispatch = useAppDispatch()
 
   function reset () {
-    setModalOpened(false)
+    setAddModalOpened(false)
     setModalsPackName('')
   }
 
@@ -25,10 +25,10 @@ export default function ModelsPackListControls ({}: IModelsPackListControls) {
     <>
       <div className={styles.modelsPackListControls}>
         <Button title={'Добавить папку'} onClick={() => {
-          setModalOpened(true)
+          setAddModalOpened(true)
         }}/>
       </div>
-      <Modal modalOpened={modalOpened}>
+      <Modal modalOpened={AddModalOpened}>
         <ModalTitle title={'Введите название папки'}/>
         <ModalInput val={modalsPackName} setter={setModalsPackName}/>
         <ModalButtons>

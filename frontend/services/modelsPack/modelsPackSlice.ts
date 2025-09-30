@@ -219,6 +219,55 @@ export const getModelsPacksShort = createAsyncThunk(
   }
 )
 
+export const delModelsPack = createAsyncThunk(
+  `modelsPack/delModelsPack`,
+  async (
+    data: {
+      id: number
+    },
+    { fulfillWithValue }
+  ) => {
+    const res = await fetch(`${url}/del-models-pack`, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+
+    return fulfillWithValue(data.id)
+  }
+)
+
+export const delModel = createAsyncThunk(
+  `modelsPack/delModel`,
+  async (
+    data: {
+      id: number
+    },
+    { fulfillWithValue }
+  ) => {
+    const res = await fetch(`${url}/del-model`, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    const json: {
+      success: true
+      modelsPackId: number
+      id: number
+    } = await res.json()
+
+    return fulfillWithValue(json)
+  }
+)
+
 export const modelsPackSlice = createSlice({
   name: 'modelsPack',
   initialState,
@@ -246,6 +295,14 @@ export const modelsPackSlice = createSlice({
       state.modelFull = actin.payload
     }).addCase(getModelRequest.rejected, (state) => {
       state.isError = true
+    }).addCase(delModelsPack.fulfilled, (state, action) => {
+      state.modelsPacksShort = state.modelsPacksShort.filter(
+        modelsPack => modelsPack.id !== action.payload)
+    }).addCase(delModel.fulfilled, (state, action) => {
+      const modelsPackIndex = state.modelsPacksShort.findIndex(
+        modelsPack => modelsPack.id === action.payload.modelsPackId)
+      state.modelsPacksShort[modelsPackIndex].models = state.modelsPacksShort[modelsPackIndex].models.filter(
+        model => model.id !== action.payload.id)
     })
   }
 })

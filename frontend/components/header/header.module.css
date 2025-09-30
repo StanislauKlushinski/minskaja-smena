@@ -1,0 +1,55 @@
+.header {
+  overflow: hidden;
+}
+
+.headerTop {
+  display: flex;
+  padding: 8px 10px 0;
+  align-items: center;
+}
+
+.logoSpan {
+  font-family: Aboreto, serif;
+  font-weight: 400;
+  font-size: 5px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #fff;
+}
+
+.input {
+  background: #d9d9d9 url("/search.png") no-repeat 10px center;
+  background-size: 9px; /* размер лупы */
+  min-width: 140px;
+  padding: 6px 6px 6px 26px;
+  border: none;
+  border-radius: 7px;
+  color: #000000a1;
+  font-family: Inter, serif;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 100%;
+  letter-spacing: 0;
+  margin-left: auto;
+}
+
+.input::placeholder {
+  color: #000000a1;
+}
+
+.headerBottom {
+  display: flex;
+  justify-content: center;
+}
+
+.link {
+  padding: 10px;
+  font-family: Aboreto, serif;
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+}

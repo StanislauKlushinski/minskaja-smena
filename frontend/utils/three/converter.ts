@@ -16,7 +16,7 @@ import {
   Line,
   LineBasicMaterial,
   Mesh,
-  MeshStandardMaterial,
+  MeshBasicMaterial,
   Points,
   PointsMaterial,
   Vector3
@@ -42,18 +42,18 @@ export class Converter {
 
   public convert (DBElement: IDBElement): false | Line | Points | Mesh {
     switch (DBElement.type) {
-      case 'Line':
-        return this.convertLine(DBElement)
-      case 'Arc':
-        return this.convertArc(DBElement)
-      case 'Circle':
-        return this.convertCircle(DBElement)
-      case 'Ellipse':
-        return this.convertEllipse(DBElement)
-      case 'Point':
-        return this.convertPoint(DBElement)
-      case 'PointCloud':
-        return this.convertPointCloud(DBElement)
+      // case 'Line':
+      //   return this.convertLine(DBElement)
+      // case 'Arc':
+      //   return this.convertArc(DBElement)
+      // case 'Circle':
+      //   return this.convertCircle(DBElement)
+      // case 'Ellipse':
+      //   return this.convertEllipse(DBElement)
+      // case 'Point':
+      //   return this.convertPoint(DBElement)
+      // case 'PointCloud':
+      //   return this.convertPointCloud(DBElement)
       case 'Mesh':
         return this.convertMesh(DBElement)
       default:
@@ -220,15 +220,11 @@ export class Converter {
     geometry.setIndex(DBMesh.data[1])
     geometry.computeVertexNormals() // если нет нормалей
 
-    const material: MeshStandardMaterial = new MeshStandardMaterial({
+    const material: MeshBasicMaterial = new MeshBasicMaterial({
       color: new Color(...DBMesh.data[2]),
-      emissive: 0x0,
-      roughness: 1,
-      metalness: 0,
       side: DoubleSide,
       clipShadows: true,
       opacity: DBMesh.data[3],
-      // wireframe: true,
       depthTest: true
     })
 
@@ -236,7 +232,6 @@ export class Converter {
     material.depthWrite = !material.transparent
 
     material.color.convertSRGBToLinear()
-    material.emissive.convertSRGBToLinear()
 
     const mesh = new Mesh(geometry, material)
 

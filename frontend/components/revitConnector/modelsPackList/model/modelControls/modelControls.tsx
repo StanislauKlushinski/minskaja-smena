@@ -6,6 +6,7 @@ import ModalButtons from '@/components/modal/modalButtons/modalButtons'
 import ModalButton from '@/components/modal/modalButton/modalButton'
 import Button from '@/components/button/button'
 import { useAppDispatch } from '@/services/hooks'
+import { delModel } from '@/services/modelsPack/modelsPackSlice'
 
 interface IModelControls {
   id: number
@@ -21,7 +22,7 @@ export default function ModelControls ({
     <>
       <div className={styles.modelControls}>
         <Button
-          title={'Обновить'}
+          title={'Удалить'}
           onClick={() => {setModalOpened(true)}}
           style={{
             marginLeft: 'auto'
@@ -30,16 +31,14 @@ export default function ModelControls ({
       </div>
       <Modal modalOpened={modalOpened}>
         <ModalTitle
-          title={'Модель будет обновлена текущей моделью, продолжить?'}
+          title={'Модель будет удалена, продолжить?'}
         />
         <ModalButtons>
-          <ModalButton name={'Продолжить'} onClick={async () => {
-            // if (browserEvent) {
-            //   const model: IDBElement[] = JSON.parse(
-            //     await browserEvent.getModel())
-            //
-            //   console.log(model)
-            // }
+          <ModalButton name={'Удалить'} onClick={async () => {
+            dispatch(delModel({
+              id: id
+            }))
+            setModalOpened(false)
           }}/>
           <ModalButton name={'Отмена'} onClick={() => {setModalOpened(false)}}/>
         </ModalButtons>

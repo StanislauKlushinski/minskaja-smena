@@ -55,3 +55,17 @@ svg * {
   display: block;
   transition: color 0.3s, stroke 0.3s, fill 0.3s;
 }
+
+@font-face {
+  font-family: "Aboreto";
+  src: url("./font/Aboreto-Regular.ttf") format("truetype");
+  font-weight: 100 900; /* диапазон толщин */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Angst";
+  src: url("./font/AngstVF.ttf") format("truetype");
+  font-weight: 50 900; /* диапазон толщин */
+  font-style: normal;
+}

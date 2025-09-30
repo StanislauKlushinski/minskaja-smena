@@ -56,4 +56,27 @@ class ModelController extends AbstractController
         return new JsonResponse($modelService->getModelJsonFull($data['slug']));
     }
 
+    #[Route('/api/v1/del-model', name: 'app_del_model', methods: [
+        'POST',
+    ])]
+    #[IsGranted("ROLE_ROOT")]
+    public function delModel(
+        Request $request,
+        ModelService $modelService
+    ): JsonResponse {
+        $data = json_decode($request->getContent(), true);
+
+        $modelService->checkDelModelPostData($data);
+
+        $model = $modelService->getModelById($data['id']);
+        $modelsPackId = $model->getModelsPack()->getId();
+        $modelService->delModel($model);
+
+        return new JsonResponse([
+            'success' => true,
+            'modelsPackId' => $modelsPackId,
+            "id" => $data['id'],
+        ]);
+    }
+
 }

@@ -1,0 +1,77 @@
+.description {
+  margin-top: 42px;
+}
+
+.description p {
+  font-family: 'Brygada 1918', serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #fff;
+  padding: 0 12px;
+}
+
+.description p:not(:first-child) {
+  margin-top: 15px;
+}
+
+.imgContainer {
+  position: relative;
+}
+
+.img {
+  position: absolute;
+  rotate: -90deg;
+  opacity: 0.2;
+  top: 19px;
+  left: -43px;
+}
+
+.imgContainer {
+  padding-top: 54px;
+  padding-left: 110px;
+}
+
+.imgContainer p {
+  font-family: "Angst", ui-serif;
+  font-weight: 50;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0.07em;
+  color: #ffffff80;
+}
+
+.addObjContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 91px;
+  gap: 9px;
+}
+
+.addObjContainer p {
+  font-family: 'Brygada 1918', serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #fff;
+}
+
+.addObjContainer p:not(:first-child) {
+  margin-top: 17px;
+}
+
+.addObjContainer button {
+  font-family: 'Brygada 1918', serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #412b2b;
+  padding: 4px 8px;
+  border-radius: 10px;
+  background-color: #d9d9d9;
+  margin-top: 16px;
+}
